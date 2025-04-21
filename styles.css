@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+
+  #stackIntroduction {
+    margin-top: 40px;
+  }
+  
+  canvas {
+    display: block;
+    margin: 20px auto;
+  }
+  
+  #pushValue {
+    padding: 8px;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  #currentStack {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  label {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  input {
+    padding: 8px;
+    font-size: 16px;
+    width: 50%;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  h2 {
+    margin-top: 30px;
+  }
+  
+  pre {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
+  #infixToPostfix, #postfixEvaluation {
+    margin-top: 30px;
+  }
+  .pop {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .push {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .operator {
+    color: blue;
+    font-weight: bold;
+  }
+  
+  .operand {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .end {
+    color: purple;
+    font-weight: bold;
+  }
+
+  .parenthesis {
+    color: green;
+    font-weight: bold;
+  }

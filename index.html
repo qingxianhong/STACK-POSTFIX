@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Infix to Postfix Conversion & Evaluation</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Infix to Postfix Conversion and Evaluation</h1>
+    <div id="introduction">
+      <h2>Why Convert Infix to Postfix?</h2>
+      <p>
+        Humans write expressions in "infix" form (e.g. <code>3 + 4 * 5</code>), but computers evaluate them more easily in "postfix" form (<code>3 4 5 * +</code>). By converting first and then using a simple stack algorithm, we get:
+      </p>
+      <ul>
+        <li><strong>No ambiguity:</strong> Postfix removes the need for parentheses or precedence rules.</li>
+        <li><strong>One-pass evaluation:</strong> Read left-to-right, push numbers, pop &amp; apply operators.</li>
+        <li><strong>Simplicity:</strong> Only a stack is needed -- perfect for compilers.</li>
+      </ul>
+      <p>
+        This tool shows each step -- what token is read, how the stack and output evolve, and how the final result is computed.
+      </p>
+    </div>    
+
+    <div id="stackIntroduction">
+      <h2>What is a Stack?</h2>
+      <p>
+        A stack is a data structure that follows the <strong>Last In, First Out (LIFO)</strong> principle. 
+        Think of it like a stack of plates: you can only add or remove the plate at the top of the stack.
+      </p>
+      
+      <p>
+        In this example, you will interact with a stack: pushing values onto it and popping values off. 
+        Follow the on-screen steps to see how a stack works and how it's used in postfix evaluation.
+      </p>
+      
+      <canvas id="stackCanvas" width="400" height="300" style="border: 1px solid #ccc;"></canvas>
+      
+      <div class="input-container">
+        <label for="pushValue">Value to Push:</label>
+        <input type="text" id="pushValue" placeholder="Enter a value (number or operator)" />
+        <button onclick="pushToStack()">Push</button>
+      </div>
+      
+      <!-- Pop Button on a new line -->
+      <div>
+        <button onclick="popFromStack()">Pop</button>
+      </div>
+      
+      <div id="stackState">
+        <h3>Current Stack:</h3>
+        <p id="currentStack">[]</p>
+      </div>
+    </div>    
+
+    <div id="algorithmRules">
+      <h2>Algorithm Rules</h2>
+
+      <h3>Infix => Postfix Conversion</h3>
+      <ul>
+        <li>When reading an <span class="operand">operand</span> (number), add it directly to the postfix expression.</li>
+        <li>When reading an <span class="operator">operator</span>, pop from the stack all operators with greater or equal precedence, then push the current operator.</li>
+        <li>When encountering a <span class="parenthesis">(</span>, push it onto the stack.</li>
+        <li>When encountering a <span class="parenthesis">)</span>, pop from the stack until a matching '(' is found.</li>
+        <li>At the end of the expression, pop all remaining operators from the stack to the postfix expression.</li>
+      </ul>
+
+      <h3>Operator Precedence</h3>
+      <ul>
+        <li><span class="operator">*</span> and <span class="operator">/</span> have precedence <strong>2</strong> (higher).</li>
+        <li><span class="operator">+</span> and <span class="operator">-</span> have precedence <strong>1</strong> (lower).</li>
+        <li>When an operator is read, pop all stack operators with precedence greater than or equal to it before pushing it.</li>
+      </ul>
+
+      <h3>Postfix Evaluation</h3>
+      <ul>
+        <li>When reading an <span class="operand">operand</span>, push it onto the stack.</li>
+        <li>When reading an <span class="operator">operator</span>, pop two operands from the stack, apply the operation, and push the result back onto the stack.</li>
+      </ul>
+    </div>
+
+    <div>
+      <label for="expression">Enter a mathematical expression:</label>
+      <input type="text" id="expression" placeholder="e.g., (3+2)*5" />
+      <button onclick="processExpression()">Convert and Visualize</button>
+    </div>
+
+    <div id="infixToPostfix">
+      <h2>Conversion Process (Infix => Postfix)</h2>
+      <pre id="steps"></pre>
+    </div>
+
+    <!-- Postfix Expression Display -->
+    <div id="postfixResult">
+      <h2>Postfix Expression</h2>
+      <pre id="postfixExpression"></pre>
+    </div>
+
+    <div id="postfixEvaluation">
+      <h2>Postfix Evaluation Process</h2>
+      <pre id="evaluationSteps"></pre>
+    </div>
+
+    <!-- Final Evaluation Value -->
+    <div id="evaluationResult">
+      <h2>Evaluation Value</h2>
+      <p id="resultValue"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
