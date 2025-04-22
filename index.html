@@ -87,9 +87,25 @@
       <button onclick="processExpression()">Convert and Visualize</button>
     </div>
 
-    <div id="infixToPostfix">
-      <h2>Conversion Process (Infix => Postfix)</h2>
-      <pre id="steps"></pre>
+
+    <div id="infixToPostfix" style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 40px;">
+      <div style="flex: 1;">
+        <h2>Conversion Process (Infix => Postfix)</h2>
+        <pre id="steps"></pre>
+      </div>
+    
+      <!-- Right side Stack Illustration -->
+      <div style="flex: 0.4; padding-left: 20px;">
+        <h2>Stack Illustration</h2>
+        <canvas id="N_evaluationStackCanvas" width="300" height="300" style="border: 1px solid #ddd;"></canvas>
+        <div id="N_currentEvaluationStack" style="font-size: 18px; font-weight: bold; color: #007bff; margin-top: 10px;">[]</div>
+    
+        <!-- Buttons for Previous and Next Step, placed below the stack illustration -->
+        <div style="margin-top: 20px; display: flex; justify-content: space-between;">
+          <button id="N_prevStepBtn" onclick="N_showPreviousStep()" disabled>Previous Step</button>
+          <button id="N_nextStepBtn" onclick="N_showNextStep()">Next Step</button>
+        </div>
+      </div>
     </div>
 
     <!-- Postfix Expression Display -->
@@ -98,10 +114,26 @@
       <pre id="postfixExpression"></pre>
     </div>
 
-    <div id="postfixEvaluation">
-      <h2>Postfix Evaluation Process</h2>
-      <pre id="evaluationSteps"></pre>
+    <div id="postfixEvaluation" style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 40px;">
+      <div style="flex: 1;">
+        <h2>Postfix Evaluation Process</h2>
+        <pre id="evaluationSteps"></pre>
+      </div>
+    
+      <!-- Right side Stack Illustration -->
+      <div style="flex: 0.4; padding-left: 20px;">
+        <h2>Stack Illustration</h2>
+        <canvas id="evaluationStackCanvas" width="300" height="300" style="border: 1px solid #ddd;"></canvas>
+        <div id="currentEvaluationStack" style="font-size: 18px; font-weight: bold; color: #007bff; margin-top: 10px;">[]</div>
+    
+        <!-- Buttons for Previous and Next Step, placed below the stack illustration -->
+        <div style="margin-top: 20px; display: flex; justify-content: space-between;">
+          <button id="prevStepBtn" onclick="showPreviousStep()" disabled>Previous Step</button>
+          <button id="nextStepBtn" onclick="showNextStep()">Next Step</button>
+        </div>
+      </div>
     </div>
+    
 
     <!-- Final Evaluation Value -->
     <div id="evaluationResult">
