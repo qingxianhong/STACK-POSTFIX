@@ -33,6 +33,7 @@ function drawStackElement(x, y, value, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, 100, 25);
   ctx.fillStyle = "#fff";
+  ctx.font = "16px Arial";
   ctx.fillText(value, x + 10, y + 17);
 }
 
@@ -219,6 +220,13 @@ function infixToPostfix(infix) {
     postfix.push(stack.pop());
   }
 
+  // Record final state
+  steps.push({
+    token: 'End',
+    stack: [],
+    postfix: [...postfix]
+  });
+
   //Save the steps and initialize the first step
   N_evaluationStepsData = steps;
   N_currentStepIndex = 0;
@@ -357,6 +365,7 @@ function N_drawEvaluationStack(stack) {
     ctx.fillStyle = color; // Set the color for the stack element
     ctx.fillRect(150, stackTop - (index * 30), 100, 25); // Draw rectangle (stack item)
     ctx.fillStyle = "#fff"; // Color the text white for readability
+    ctx.font = "16px Arial"; // Set font for the text
     ctx.fillText(value, 160, stackTop - (index * 30) + 17); // Draw the value inside the rectangle
     ctx.fillStyle = color; // Reset color for the next item
   });
@@ -379,6 +388,7 @@ function drawEvaluationStack(stack) {
     ctx.fillStyle = color; // Set the color for the stack element
     ctx.fillRect(150, stackTop - (index * 30), 100, 25); // Draw rectangle (stack item)
     ctx.fillStyle = "#fff"; // Color the text white for readability
+    ctx.font = "16px Arial";
     ctx.fillText(value, 160, stackTop - (index * 30) + 17); // Draw the value inside the rectangle
     ctx.fillStyle = color; // Reset color for the next item
   });
