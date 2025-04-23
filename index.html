@@ -28,7 +28,7 @@
       <h2>What is a Stack?</h2>
       <p>
         A stack is a data structure that follows the <strong>Last In, First Out (LIFO)</strong> principle. 
-        Think of it like a stack of plates: you can only add or remove the plate at the top of the stack.
+        Think of it like a stack of plates: you can only add (<strong>PUSH</strong>) or remove (<strong>POP</strong>) the plate at the top of the stack.
       </p>
       
       <p>
@@ -38,17 +38,18 @@
       
       <canvas id="stackCanvas" width="400" height="300" style="border: 1px solid #ccc;"></canvas>
       
-      <div class="input-container">
-        <label for="pushValue">Value to Push:</label>
-        <input type="text" id="pushValue" placeholder="Enter a value (number or operator)" />
-        <button onclick="pushToStack()">Push</button>
+      <div class="container_S">
+        <div class="input-container">
+            <label for="pushValue">Item to Push:</label>
+            <input type="text" id="pushValue" placeholder="number or operator" />
+            <button onclick="pushToStack()" class="action-btn">Push</button>
+        </div>
+    
+        <div class="pop-btn-container">
+            <button onclick="popFromStack()" class="action-btn">Pop</button>
+        </div>
       </div>
-      
-      <!-- Pop Button on a new line -->
-      <div>
-        <button onclick="popFromStack()">Pop</button>
-      </div>
-      
+
       <div id="stackState">
         <h3>Current Stack:</h3>
         <p id="currentStack">[]</p>
@@ -60,11 +61,11 @@
 
       <h3>Infix => Postfix Conversion</h3>
       <ul>
-        <li>When reading an <span class="operand">operand</span> (number), add it directly to the postfix expression.</li>
-        <li>When reading an <span class="operator">operator</span>, pop from the stack all operators with greater or equal precedence, then push the current operator.</li>
-        <li>When encountering a <span class="parenthesis">(</span>, push it onto the stack.</li>
-        <li>When encountering a <span class="parenthesis">)</span>, pop from the stack until a matching '(' is found.</li>
-        <li>At the end of the expression, pop all remaining operators from the stack to the postfix expression.</li>
+        <li>When reading an <span class="operand"><strong>operand</strong></span> (number), add it directly to the postfix expression.</li>
+        <li>When reading an <span class="operator"><strong>operator</strong></span>, pop from the stack all operators with <strong>greater or equal</strong> precedence, then push the current operator.</li>
+        <li>When encountering a <span class="parenthesis"><strong>(</strong></span>, push it onto the stack.</li>
+        <li>When encountering a <span class="parenthesis"><strong>)</strong></span>, pop from the stack until a matching '(' is found.</li>
+        <li>At the end of the expression, <strong>pop all remaining operators</strong> from the stack to the postfix expression.</li>
       </ul>
 
       <h3>Operator Precedence</h3>
@@ -76,8 +77,8 @@
 
       <h3>Postfix Evaluation</h3>
       <ul>
-        <li>When reading an <span class="operand">operand</span>, push it onto the stack.</li>
-        <li>When reading an <span class="operator">operator</span>, pop two operands from the stack, apply the operation, and push the result back onto the stack.</li>
+        <li>When reading an <span class="operand"><strong>operand</strong></span>, push it onto the stack.</li>
+        <li>When reading an <span class="operator"><strong>operator</strong></span>, pop two operands from the stack, apply the operation, and push the result back onto the stack.</li>
       </ul>
     </div>
 
