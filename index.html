@@ -49,6 +49,7 @@
         <div class="input-container">
             <label for="pushValue" data-i18n="l">Item to Push:</label>
             <input type="text" id="pushValue" placeholder="number or operator" />
+            <span id="error-message_STACK" class="error-message"></span>
             <button onclick="pushToStack()" class="action-btn">Push</button>
         </div>
     
@@ -92,6 +93,7 @@
     <div>
       <label for="expression" data-i18n="ab">Enter a mathematical expression:</label>
       <input type="text" id="expression" placeholder="e.g., (3+2)*5" />
+      <span id="error-message" class="error-message"></span>
       <button onclick="processExpression()" data-i18n="ac">Convert and Visualize</button>
     </div>
 
