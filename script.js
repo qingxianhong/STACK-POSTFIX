@@ -239,7 +239,7 @@ function pushToStack() {
     drawStack(stack.length - 1, 'push');
     document.getElementById('pushValue').value = '';
   } else {
-    alert("Invalid input. Please enter a number, operator (+, -, *, /), or parentheses.");
+    highlightInputError_STACK(1);
   }
 }
 
@@ -262,7 +262,7 @@ function popFromStack() {
       drawStack(); // Redraw after animation
     });
   } else {
-    alert("Stack is empty!");
+    highlightInputError_STACK(2);
   }
 }
 
@@ -402,8 +402,8 @@ function evaluatePostfix(postfixStr) {
 function isValidInfix(expression) {
   // Regular expression to check for invalid characters
   const validChars = /^[0-9+\-*/()\s]+$/;
-  if (!validChars.test(expression)) {
-    alert('Invalid characters detected! Only numbers, operators (+, -, *, /), and parentheses are allowed.');
+  if (!validChars.test(expression) && expression.trim().length > 0) {
+    highlightInputError(1);
     return false;
   }
 
@@ -413,26 +413,26 @@ function isValidInfix(expression) {
     if (expression[i] === '(') balance++;
     if (expression[i] === ')') balance--;
     if (balance < 0) {  // More closing parentheses than opening
-      alert('Mismatched parentheses detected!');
+      highlightInputError(2);
       return false;
     }
   }
 
   if (balance !== 0) {
-    alert('Mismatched parentheses detected!');
+    highlightInputError(2);
     return false;
   }
 
   // Check for invalid operator placement (e.g., "+ *", "3 + + 5")
   const operatorPattern = /([+\-*/]{2,})|([+\-*/]$)|(^[+\-*/])/;
   if (operatorPattern.test(expression)) {
-    alert('Invalid operator usage! Please ensure operators are placed correctly.');
+    highlightInputError(3);
     return false;
   }
 
   // Check for empty expression or only whitespace
   if (expression.trim() === "") {
-    alert('Empty expression detected! Please enter a valid expression.');
+    highlightInputError(4);
     return false;
   }
 
@@ -442,10 +442,6 @@ function isValidInfix(expression) {
 // Main entry point when user clicks ¡§Convert and Visualize¡¨
 function processExpression() {
   const expr = document.getElementById('expression').value.trim();
-  if (!expr) {
-    alert('Please enter a mathematical expression');
-    return;
-  }
 
   // Validate the infix expression
   if (!isValidInfix(expr)) {
@@ -1025,16 +1021,20 @@ function evaluateTreeSteps(node, updateScrollPosition) {
 
 let treeCanvasMutex = 1;
 async function showExpressionTreeDemo() {
+
+  const input = document.getElementById("expression").value.trim();
+
+  // Validate the infix expression
+  if (!isValidInfix(input)) {
+    return;  // Stop if the expression is invalid
+  }
+
   if (!treeCanvasMutex) {
     return; // Prevent multiple clicks
   }
   treeCanvasMutex = 0; // Lock the canvas
   steps_TREE.length = 0;
 
-  const input = document.getElementById("expression").value;
-  if (!input) {
-    return;
-  }
   const tokens = tokenize(input);
   const postfix = toPostfix(tokens);
   const root = buildTree(postfix);
@@ -1094,4 +1094,118 @@ function getTreeBounds(node) {
 
   traverse(node);
   return { width: maxX + 50, height: maxY + 50 }; // Padding for safety
+}
+
+function highlightInputError(err) {
+  const inputField = document.getElementById("expression");
+  const errorMessage = document.getElementById("error-message");
+
+  // Scroll to the input field
+  inputField.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  // Add a red border and animation
+  inputField.classList.add("input-error");
+
+  if (err==1) {
+    if (currentLang === "en") {
+      errorMessage.innerText = "Invalid characters detected! Only numbers, operators (+, -, *, /), and parentheses are allowed.";
+    }
+    else if (currentLang === "zh") {
+      errorMessage.innerText = "無效字符! 只允許數字、運算符 (+, -, *, /) 和括號。";
+    }
+  }
+  else if (err==2) {
+    if (currentLang === "en") {
+      errorMessage.innerText = "Mismatched parentheses detected!";
+    }
+    else if (currentLang === "zh") {
+      errorMessage.innerText = "括號不匹配!";
+    }
+  }
+  else if (err==3) {
+    if (currentLang === "en") {
+      errorMessage.innerText = "Invalid operator usage! Please ensure operators are placed correctly.";
+    }
+    else if (currentLang === "zh") {
+      errorMessage.innerText = "運算符使用不正確! 請確保運算符正確放置。";
+    }
+  }
+  else if (err==4) {
+    if (currentLang === "en") {
+      errorMessage.innerText = "Empty expression! Please enter a valid expression.";
+    }
+    else if (currentLang === "zh") {
+      errorMessage.innerText = "算式欄位空白! 請輸入有效的表達式。";
+    }
+  }
+  else {}
+
+  // Show the span
+  errorMessage.style.display = "block";
+
+  // Listen for user input to remove the flashing and reset the message
+  function stopFlashing() {
+    inputField.classList.remove("input-error");
+    inputField.removeEventListener("input", stopFlashing);
+
+    // Hide the error message and reset input field
+    errorMessage.style.display = "none";
+    if (currentLang === "en") {
+      inputField.setAttribute("placeholder", "e.g., (3+2)*5");
+    }
+    else if (currentLang === "zh") {
+      inputField.setAttribute("placeholder", "例如 (3+2)*5");
+    }
+  }
+
+  inputField.addEventListener("input", stopFlashing);
+}
+
+function highlightInputError_STACK(err) {
+  const inputField = document.getElementById("pushValue");
+  const errorMessage = document.getElementById("error-message_STACK");
+
+  // Scroll to the input field
+  inputField.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  // Add a red border and animation
+  inputField.classList.add("input-error");
+
+  if (err==1) {
+    if (currentLang === "en") {
+      errorMessage.innerText = "Invalid characters detected! Only numbers, operators (+, -, *, /), and parentheses are allowed.";
+    }
+    else if (currentLang === "zh") {
+      errorMessage.innerText = "無效字符! 只允許數字、運算符 (+, -, *, /) 和括號。";
+    }
+  }
+  else if (err==2) {
+    if (currentLang === "en") {
+      errorMessage.innerText = "Stack is empty! Cannot pop from an empty stack.";
+    }
+    else if (currentLang === "zh") {
+      errorMessage.innerText = "堆疊為空! 無法從空堆疊中彈出。";
+    }
+  }
+  else {}
+
+  // Show the span
+  errorMessage.style.display = "block";
+
+  // Listen for user input to remove the flashing and reset the message
+  function stopFlashing() {
+    inputField.classList.remove("input-error");
+    inputField.removeEventListener("input", stopFlashing);
+
+    // Hide the error message and reset input field
+    errorMessage.style.display = "none";
+    if (currentLang === "en") {
+      inputField.setAttribute("placeholder", "number or operator");
+    }
+    else if (currentLang === "zh") {
+      inputField.setAttribute("placeholder", "數字或運算符");
+    }
+  }
+
+  inputField.addEventListener("input", stopFlashing);
 }
