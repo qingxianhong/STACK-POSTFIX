@@ -1,3 +1,4 @@
+
 /* Basic Styles */
 body {
   font-family: 'Arial', sans-serif;
@@ -12,7 +13,7 @@ body {
   max-width: 900px;
   margin: 20px auto;
   padding: 40px;
-  background: linear-gradient(to bottom, #eeeeee, #aaaaaa);
+  background: linear-gradient(to bottom, #eeeeee, #cccccc);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
 }
@@ -230,4 +231,29 @@ pre {
 
 #prevStepBtn:hover, #nextStepBtn:hover, #N_prevStepBtn:hover, #N_nextStepBtn:hover {
   background-color: #0056b3;
+}
+
+#treeCanvas:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.T_canvas-container {
+  width: 100%;
+  max-width: 1000px;
+  max-height: 600px;
+  overflow: auto;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-top: 30px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#treeCanvas {
+  display: block;
+  min-width: 100%;
+  min-height: 100%;
+  border: 2px white;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
 }
