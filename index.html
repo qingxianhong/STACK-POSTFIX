@@ -3,36 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Infix to Postfix Conversion & Evaluation</title>
+  <title data-i18n="a">Infix to Postfix Conversion & Evaluation</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
   <div class="container">
-    <h1>Infix to Postfix Conversion and Evaluation</h1>
+
+    <!-- Language Toggle Button -->
+    <div style="text-align: right; margin: 20px;">
+      <button onclick="toggleLanguage()" id="langToggleBtn">中文</button>
+    </div>
+
+    <h1 data-i18n="b">Infix to Postfix Conversion and Evaluation</h1>
     <div id="introduction">
-      <h2>Why Convert Infix to Postfix?</h2>
-      <p>
+      <h2 data-i18n="c">Why Convert Infix to Postfix?</h2>
+      <p data-i18n="d">
         Humans write expressions in "infix" form (e.g. <code>3 + 4 * 5</code>), but computers evaluate them more easily in "postfix" form (<code>3 4 5 * +</code>). By converting first and then using a simple stack algorithm, we get:
       </p>
       <ul>
-        <li><strong>No ambiguity:</strong> Postfix removes the need for parentheses or precedence rules.</li>
-        <li><strong>One-pass evaluation:</strong> Read left-to-right, push numbers, pop &amp; apply operators.</li>
-        <li><strong>Simplicity:</strong> Only a stack is needed -- perfect for compilers.</li>
+        <li data-i18n="e"><strong>No ambiguity:</strong> Postfix removes the need for parentheses or precedence rules.</li>
+        <li data-i18n="f"><strong>One-pass evaluation:</strong> Read left-to-right, push numbers, pop &amp; apply operators.</li>
+        <li data-i18n="g"><strong>Simplicity:</strong> Only a stack is needed -- perfect for compilers.</li>
       </ul>
-      <p>
+      <p data-i18n="h">
         This tool shows each step -- what token is read, how the stack and output evolve, and how the final result is computed.
       </p>
     </div>    
 
     <div id="stackIntroduction">
-      <h2>What is a Stack?</h2>
-      <p>
+      <h2 data-i18n="i">What is a Stack?</h2>
+      <p data-i18n="j">
         A stack is a data structure that follows the <strong>Last In, First Out (LIFO)</strong> principle. 
         Think of it like a stack of plates: you can only add (<strong>PUSH</strong>) or remove (<strong>POP</strong>) the plate at the top of the stack.
       </p>
       
-      <p>
-        In this example, you will interact with a stack: pushing values onto it and popping values off. 
+      <p data-i18n="k">
+        In this tool, you will interact with a stack: pushing values onto it and popping values off. 
         Follow the on-screen steps to see how a stack works and how it's used in postfix evaluation.
       </p>
       
@@ -40,7 +47,7 @@
       
       <div class="container_S">
         <div class="input-container">
-            <label for="pushValue">Item to Push:</label>
+            <label for="pushValue" data-i18n="l">Item to Push:</label>
             <input type="text" id="pushValue" placeholder="number or operator" />
             <button onclick="pushToStack()" class="action-btn">Push</button>
         </div>
@@ -51,86 +58,86 @@
       </div>
 
       <div id="stackState">
-        <h3>Current Stack:</h3>
+        <h3 data-i18n="m">Current Stack:</h3>
         <p id="currentStack">[]</p>
       </div>
     </div>    
 
     <div id="algorithmRules">
-      <h2>Algorithm Rules</h2>
+      <h2 data-i18n="n">Algorithm Rules</h2>
 
-      <h3>Infix => Postfix Conversion</h3>
+      <h3 data-i18n="o">Infix => Postfix Conversion</h3>
       <ul>
-        <li>When reading an <span class="operand"><strong>operand</strong></span> (number), add it directly to the postfix expression.</li>
-        <li>When reading an <span class="operator"><strong>operator</strong></span>, pop from the stack all operators with <strong>greater or equal</strong> precedence, then push the current operator.</li>
-        <li>When encountering a <span class="parenthesis"><strong>(</strong></span>, push it onto the stack.</li>
-        <li>When encountering a <span class="parenthesis"><strong>)</strong></span>, pop from the stack until a matching '(' is found.</li>
-        <li>At the end of the expression, <strong>pop all remaining operators</strong> from the stack to the postfix expression.</li>
+        <li data-i18n="p">When reading an <span class="operand"><strong>operand</strong></span> (number), add it directly to the postfix expression.</li>
+        <li data-i18n="q">When reading an <span class="operator"><strong>operator</strong></span>, pop from the stack all operators with <strong>greater or equal</strong> precedence, then push the current operator.</li>
+        <li data-i18n="r">When encountering a <span class="parenthesis"><strong>(</strong></span>, push it onto the stack.</li>
+        <li data-i18n="s">When encountering a <span class="parenthesis"><strong>)</strong></span>, pop from the stack until a matching '(' is found.</li>
+        <li data-i18n="t">At the end of the expression, <strong>pop all remaining operators</strong> from the stack to the postfix expression.</li>
       </ul>
 
-      <h3>Operator Precedence</h3>
+      <h3 data-i18n="u">Operator Precedence</h3>
       <ul>
-        <li><span class="operator">*</span> and <span class="operator">/</span> have precedence <strong>2</strong> (higher).</li>
-        <li><span class="operator">+</span> and <span class="operator">-</span> have precedence <strong>1</strong> (lower).</li>
-        <li>When an operator is read, pop all stack operators with precedence greater than or equal to it before pushing it.</li>
+        <li data-i18n="v"><span class="operator">*</span> and <span class="operator">/</span> have precedence <strong>2</strong> (higher).</li>
+        <li data-i18n="w"><span class="operator">+</span> and <span class="operator">-</span> have precedence <strong>1</strong> (lower).</li>
+        <li data-i18n="x">When an operator is read, pop all stack operators with precedence greater than or equal to it before pushing it.</li>
       </ul>
 
-      <h3>Postfix Evaluation</h3>
+      <h3 data-i18n="y">Postfix Evaluation</h3>
       <ul>
-        <li>When reading an <span class="operand"><strong>operand</strong></span>, push it onto the stack.</li>
-        <li>When reading an <span class="operator"><strong>operator</strong></span>, pop two operands from the stack, apply the operation, and push the result back onto the stack.</li>
+        <li data-i18n="z">When reading an <span class="operand"><strong>operand</strong></span>, push it onto the stack.</li>
+        <li data-i18n="aa">When reading an <span class="operator"><strong>operator</strong></span>, pop two operands from the stack, apply the operation, and push the result back onto the stack.</li>
       </ul>
     </div>
 
     <div>
-      <label for="expression">Enter a mathematical expression:</label>
+      <label for="expression" data-i18n="ab">Enter a mathematical expression:</label>
       <input type="text" id="expression" placeholder="e.g., (3+2)*5" />
-      <button onclick="processExpression()">Convert and Visualize</button>
+      <button onclick="processExpression()" data-i18n="ac">Convert and Visualize</button>
     </div>
 
 
     <div id="infixToPostfix" style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 40px;">
       <div style="flex: 1;">
-        <h2>Conversion Process (Infix => Postfix)</h2>
+        <h2 data-i18n="ad">Conversion Process (Infix => Postfix)</h2>
         <pre id="steps"></pre>
       </div>
     
       <!-- Right side Stack Illustration -->
       <div style="flex: 0.4; padding-left: 20px;">
-        <h2>Stack Illustration</h2>
+        <h2 data-i18n="ae">Stack Illustration</h2>
         <canvas id="N_evaluationStackCanvas" width="300" height="300" style="border: 1px solid #ddd;"></canvas>
         <div id="N_currentEvaluationStack" style="font-size: 18px; font-weight: bold; color: #007bff; margin-top: 10px;">[]</div>
     
         <!-- Buttons for Previous and Next Step, placed below the stack illustration -->
         <div style="margin-top: 20px; display: flex; justify-content: space-between;">
-          <button id="N_prevStepBtn" onclick="N_showPreviousStep()" disabled>Previous Step</button>
-          <button id="N_nextStepBtn" onclick="N_showNextStep()">Next Step</button>
+          <button id="N_prevStepBtn" onclick="N_showPreviousStep()" disabled data-i18n="af">Previous Step</button>
+          <button id="N_nextStepBtn" onclick="N_showNextStep()" data-i18n="ag">Next Step</button>
         </div>
       </div>
     </div>
 
     <!-- Postfix Expression Display -->
     <div id="postfixResult">
-      <h2>Postfix Expression</h2>
+      <h2 data-i18n="ah">Postfix Expression</h2>
       <pre id="postfixExpression"></pre>
     </div>
 
     <div id="postfixEvaluation" style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 40px;">
       <div style="flex: 1;">
-        <h2>Postfix Evaluation Process</h2>
+        <h2 data-i18n="ai">Postfix Evaluation Process</h2>
         <pre id="evaluationSteps"></pre>
       </div>
     
       <!-- Right side Stack Illustration -->
       <div style="flex: 0.4; padding-left: 20px;">
-        <h2>Stack Illustration</h2>
+        <h2 data-i18n="aj">Stack Illustration</h2>
         <canvas id="evaluationStackCanvas" width="300" height="300" style="border: 1px solid #ddd;"></canvas>
         <div id="currentEvaluationStack" style="font-size: 18px; font-weight: bold; color: #007bff; margin-top: 10px;">[]</div>
     
         <!-- Buttons for Previous and Next Step, placed below the stack illustration -->
         <div style="margin-top: 20px; display: flex; justify-content: space-between;">
-          <button id="prevStepBtn" onclick="showPreviousStep()" disabled>Previous Step</button>
-          <button id="nextStepBtn" onclick="showNextStep()">Next Step</button>
+          <button id="prevStepBtn" onclick="showPreviousStep()" disabled data-i18n="ak">Previous Step</button>
+          <button id="nextStepBtn" onclick="showNextStep()" data-i18n="al">Next Step</button>
         </div>
       </div>
     </div>
@@ -138,8 +145,32 @@
 
     <!-- Final Evaluation Value -->
     <div id="evaluationResult">
-      <h2>Evaluation Value</h2>
+      <h2 data-i18n="am">Evaluation Value</h2>
       <p id="resultValue"></p>
+    </div>
+
+    <!-- Expression Tree Introduction -->
+    <div id="expressionTreeIntro">
+      <h2 data-i18n="an">Another approach: Expression Tree</h2>
+      <p data-i18n="ao">
+        An expression tree is a binary tree used to represent expressions. Each internal node represents an operator, and each leaf node represents an operand. This structure naturally reflects the hierarchy of operations.
+      </p>
+      <p data-i18n="ap">
+        Expression trees allow us to evaluate expressions using tree traversals:
+      </p>
+      <ul>
+        <li data-i18n="aq"><strong>In-order traversal</strong>: Reconstructs the original infix expression.</li>
+        <li data-i18n="ar"><strong>Post-order traversal</strong>: Used to evaluate the expression directly, similar to postfix evaluation.</li>
+        <li data-i18n="as"><strong>Pre-order traversal</strong>: Can be used to produce prefix notation.</li>
+      </ul>
+      <p data-i18n="at">
+        This approach offers an intuitive, recursive method for parsing and evaluating expressions, especially useful in compilers and interpreters.
+      </p>
+      <button onclick="showExpressionTreeDemo()" data-i18n="au">Try Expression Tree Demo</button>
+      <br />
+      <div class="T_canvas-container">
+        <canvas id="treeCanvas"></canvas>
+      </div>
     </div>
   </div>
 
