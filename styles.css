@@ -257,3 +257,27 @@ pre {
   background-color: white;
   transition: all 0.3s ease-in-out;
 }
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: none; /* Initially hidden */
+}
+
+@keyframes inputBlink {
+  0%, 100% {
+    border-color: red;
+    box-shadow: 0 0 5px red;
+  }
+  50% {
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.input-error {
+  animation: inputBlink 1s ease-in-out infinite;
+  border: 2px solid red;
+  outline: none;
+}
